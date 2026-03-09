@@ -27,7 +27,7 @@ app = Flask(__name__)
 app.secret_key = "supersecretkey"
 
 # SOCKETIO
-socketio = SocketIO(app, cors_allowed_origins="*")
+socketio = SocketIO(app, cors_allowed_origins="*", async_mode="eventlet")
 
 # DATABASE
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///marketplace.db"
@@ -3564,5 +3564,6 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
 
     socketio.run(app, host="0.0.0.0", port=port)
+
 
 
