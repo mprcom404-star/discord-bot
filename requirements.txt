@@ -1,10 +1,11 @@
 Flask
 Flask-SQLAlchemy
 Flask-SocketIO
-eventlet
 Flask-Mail
 authlib
+requests
 reportlab
+eventlet
+gunicorn
 python-socketio
 python-engineio
-gunicorn
