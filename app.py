@@ -1,3 +1,6 @@
+import eventlet
+eventlet.monkey_patch()
+
 from flask import Flask, render_template, request, redirect, session, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_socketio import SocketIO, emit, join_room
@@ -3561,4 +3564,5 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
 
     socketio.run(app, host="0.0.0.0", port=port)
+
 
