@@ -877,7 +877,7 @@ def register():
         last_name = request.form.get("last_name")
         email = request.form.get("email")
         password = request.form.get("password")
-        role = request.form.get("role")   # ⭐ capture role
+        role = request.form.get("role")
 
         avatar_file = request.files.get("avatar")
         avatar_filename = "default.png"
@@ -893,7 +893,7 @@ def register():
             email=email,
             password=password,
             avatar=avatar_filename,
-            role=role   # ⭐ save role
+            role=role
         )
 
         db.session.add(user)
@@ -913,7 +913,11 @@ def register():
 
         msg.body = f"Your EduMarket verification OTP is: {otp}"
 
-        mail.send(msg)
+        # SAFE EMAIL SEND
+        try:
+            mail.send(msg)
+        except Exception as e:
+            print("EMAIL ERROR:", e)
 
         return redirect("/verify-otp")
 
@@ -3561,6 +3565,7 @@ if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
 
     socketio.run(app, host="0.0.0.0", port=port)
+
 
 
 
